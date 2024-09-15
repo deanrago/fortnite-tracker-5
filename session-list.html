@@ -1,6 +1,3 @@
-<!--======================================
-|                   Root                 |
-======================================= -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,27 +23,23 @@
             <ul>
                 <li><a href="index.html">New</a></li>
                 <li><a href="performance.html">Performance</a></li>
-                <li><a href="session-list.html">List</a></li>
+                <li><a href="session-list.html" class="active">List</a></li>
                 <li><a href="https://www.therecoveryvillage.com/crack-addiction/crack-hotline/">Cracked</a></li>
             </ul>
         </nav>
     </header>
-
-
-
+    
+    <form id="statsForm"> <!--- Not sure why, but this must be here-->
+    </form>
     <main>
         
-        <form id="statsForm"> <!--- Not sure why, but this must be here-->
-
-
-
-            
+        
+      
 <!--======================================
 |                   List                 |
 ======================================= -->
         <!-- Section where combined game stats will be shown after submission -->
         <section id="game-stats">
-            <h2>Session Log</h2>
             <!-- Container where JavaScript will inject the combined stats -->
             <div id="statsContainer">
                 <p>Submit your stats to see the combined results.</p>
@@ -54,9 +47,22 @@
         </section>
     </main>
 
+ <!--======================================
+|              Footer &  Ticker            |
+======================================= -->
+
     <!-- Footer at the bottom of the page -->
     <footer>
-        <p>&copy; 2024 Bustin' It Web Design</p>
+        <div class="ticker">
+            <div class="ticker-content">
+                <div class="ticker-item">My Brother in Christ</div>
+                <div class="ticker-item">I'm Bustin' It</div>
+                <div class="ticker-item">Alien Play</div>
+                <div class="ticker-item">I'm Cracked RN</div>
+        
+            </div>
+        </div>
+        <p>&copy; 2024 Bustin' Designs</p>
     </footer>
 
     <!-- Links the external JavaScript file. This script runs once the HTML loads -->

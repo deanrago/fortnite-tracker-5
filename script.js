@@ -66,7 +66,8 @@ statsForm.addEventListener('submit', async (e) => {
 //                 Load Stats from Firebase
 //================================================
 async function loadAllGameStats() {
-    const statsQuery = query(collection(db, "gameStats"), orderBy("gameId", "desc"));
+    // Modify the query to order by the timestamp in descending order
+    const statsQuery = query(collection(db, "gameStats"), orderBy("timestamp", "desc"));
     const querySnapshot = await getDocs(statsQuery);
 
     // Create a nested object to store game stats by gameId
@@ -88,7 +89,8 @@ async function loadAllGameStats() {
                 assists: 0,
                 damage: 0,
                 placement: 0,
-                landingZone: ''
+                landingZone: '',
+                timestamp: data.timestamp // Store the timestamp for each game
             };
         }
 
@@ -99,6 +101,11 @@ async function loadAllGameStats() {
         gameStats[gameId][data.gamertag].placement = data.placement;
         gameStats[gameId][data.gamertag].landingZone = data.landingZone;
         gameStats[gameId].totalKills = (gameStats[gameId].totalKills || 0) + data.kills;
+
+        // Also store the latest timestamp for the game
+        if (!gameStats[gameId].timestamp || gameStats[gameId].timestamp < data.timestamp) {
+            gameStats[gameId].timestamp = data.timestamp;
+        }
     });
 
     // Clear existing stats display
@@ -107,18 +114,28 @@ async function loadAllGameStats() {
     // Generate and display tables for each gameId, most recent first
     for (const gameId in gameStats) {
         const gameData = gameStats[gameId];
+
+        // Ensure Lisan-Al-Gaib exists before trying to access its properties
+        const lisanData = gameData['Lisan-Al-Gaib'] || { landingZone: 'N/A', kills: 0, assists: 0, damage: 0, placement: 'N/A' };
+        const afz1219Data = gameData['AFZ1219'] || { landingZone: 'N/A', kills: 0, assists: 0, damage: 0, placement: 'N/A' };
+
+        // Format the timestamp into a readable date
+        const formattedDate = gameData.timestamp ? gameData.timestamp.toDate().toLocaleDateString() : 'No Date';
+
         const gameTable = `
             <table>
-                <caption>Game ID: ${gameId}</caption>
+                <caption>Game ID: ${gameId} - ${formattedDate}</caption>
                 <tr><th>Gamertag</th><th>Landing Zone</th><th>Kills</th><th>Assists</th><th>Damage</th><th>Placement</th></tr>
-                <tr><td>AFZ1219</td><td>${gameData['AFZ1219'].landingZone}</td><td>${gameData['AFZ1219'].kills}</td><td>${gameData['AFZ1219'].assists}</td><td>${gameData['AFZ1219'].damage}</td><td>${gameData['AFZ1219'].placement}</td></tr>
-                <tr><td>Lisan-Al-Gaib</td><td>${gameData['Lisan-Al-Gaib'].landingZone}</td><td>${gameData['Lisan-Al-Gaib'].kills}</td><td>${gameData['Lisan-Al-Gaib'].assists}</td><td>${gameData['Lisan-Al-Gaib'].damage}</td><td>${gameData['Lisan-Al-Gaib'].placement}</td></tr>
+                <tr><td>AFZ1219</td><td>${afz1219Data.landingZone}</td><td>${afz1219Data.kills}</td><td>${afz1219Data.assists}</td><td>${afz1219Data.damage}</td><td>${afz1219Data.placement}</td></tr>
+                <tr><td>Lisan-Al-Gaib</td><td>${lisanData.landingZone}</td><td>${lisanData.kills}</td><td>${lisanData.assists}</td><td>${lisanData.damage}</td><td>${lisanData.placement}</td></tr>
                 <tr><th colspan="2">Total Team Kills</th><th>${gameData.totalKills}</th></tr>
             </table>
         `;
-        statsContainer.innerHTML = gameTable + statsContainer.innerHTML;
+        // Add each gameTable to the container, keeping the order
+        statsContainer.innerHTML += gameTable;
     }
 }
+
 
 // ===============================================
 //                 Calculate AKPG
@@ -166,6 +183,18 @@ async function calculateAkpg() {
     afz1219Adpg.textContent = `Dpg: ${afz1219AdpgValue}`;
     lisanAdpg.textContent = `Dpg: ${lisanAdpgValue}`;
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const tickerContent = document.querySelector('.ticker-content');
+
+    // Clone the ticker content to create a seamless loop
+    const clone = tickerContent.cloneNode(true);
+    tickerContent.parentNode.appendChild(clone);
+});
+
+
+
 
 // Load all game stats and AKPG on page load
 loadAllGameStats();
