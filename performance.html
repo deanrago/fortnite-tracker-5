@@ -31,44 +31,45 @@
 <!--======================================
 |                   Key Stats            |
 ======================================= -->
-    <main>
-        <section id="akpg-header">
-                <table>
-                    <tr>
-                        <td>
-                            <img src="ariel-face.png" alt="Icon" class="small-image">
-                        </td>
-                        
-                        <td>
-                            <img src="dean-velcro.png" alt="Icon" class="small-image">
-                        </td>
-                       
-                    </tr>
-                    <tr>
-                        <td>    
-                            <div id="afz1219-akpg" class="stat-display-az">KPG:Loading...</div>
-                        </td> 
-                        <td>
-                            <div id="lisan-akpg" class="stat-display-lisan">KPG: Loading...</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div id="afz1219-adpg" class="stat-display-az">DPG: Loading...</div> 
-                        </td>
-                        <td>
-                            <div id="lisan-adpg" class="stat-display-lisan">DKPG: Loading...</div>
-                        </td>
-                    </tr>
-                </table>   
-                            <!-- Placeholder for Lisan's AKPG score, also populated by JavaScript -->
-        </section>
+<main>
+    <section id="akpg-header">
+        <table>
+            <tr>
+                <!-- Existing player images -->
+                <td>
+                    <img src="ariel-face.png" alt="Icon" class="small-image">
+                </td>
+                <td>
+                    <img src="dean-velcro.png" alt="Icon" class="small-image">
+                </td>
+                <!-- New placeholder image for JeLL o Licious -->
+                <td>
+                    <img src="placeholder-jellolicious.png" alt="JeLL o Licious" class="small-image">
+                </td>
+            </tr>
 
-       
-            <form id="statsForm"> <!--- Not sure why, but this must be here-->
-            </form>
-    
-    </main>
+            <!-- Existing stats -->
+            <tr>
+                <td><div id="afz1219-akpg" class="stat-display-az">KPG:Loading...</div></td>
+                <td><div id="lisan-akpg" class="stat-display-lisan">KPG:Loading...</div></td>
+                <!-- New stats placeholder for JeLL o Licious -->
+                <td><div id="jell-akpg" class="stat-display-jell">KPG:Loading...</div></td>
+            </tr>
+
+            <tr>
+                <td><div id="afz1219-adpg" class="stat-display-az">DPG: Loading...</div></td>
+                <td><div id="lisan-adpg" class="stat-display-lisan">DKPG: Loading...</div></td>
+                <td><div id="jell-adpg" class="stat-display-jell">DPG: Loading...</div></td>
+            </tr>
+
+            <tr>
+                <td><div id="afz1219-max-damage" class="stat-display-az">Mdmg:</div></td>
+                <td><div id="lisan-max-damage" class="stat-display-lisan">Mdmg:</div></td>
+                <td><div id="jell-max-damage" class="stat-display-jell">Mdmg:</div></td>
+            </tr>
+        </table>
+    </section>
+</main>
 
     
 <!--======================================
