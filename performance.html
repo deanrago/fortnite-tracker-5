@@ -5,92 +5,86 @@
 |                   Head                 |
 ======================================= -->
 <head>
-    <meta charset="UTF-8"> <!-- Defines the document type and version as HTML5 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling on mobile devices -->
-    <title>I'm Bustin' It</title> <!-- Sets the page title that appears in the browser tab -->
-    <link rel="stylesheet" href="style.css"> <!-- Links to the external CSS file, connecting this HTML to the styling in "style.css" -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Bustin' It</title>
+    <link rel="stylesheet" href="global.css"> 
+    <link rel="stylesheet" href="performance.css"> 
 </head>
 
 <!--======================================
 |                   Body                 |
 ======================================= -->
 <body>
-<!----    Header    ---->
+    <!-- Header -->
     <header>
         <h1>Fork Knife Stats</h1>
-<!----    NavBar    ---->
         <nav>
             <ul>
                 <li><a href="index.html">New</a></li>
                 <li><a href="performance.html" class="active">Performance</a></li>
                 <li><a href="session-list.html">List</a></li>
-                <li><a href="https://www.therecoveryvillage.com/crack-addiction/crack-hotline/">Cracked</a></li>
             </ul>
         </nav>
     </header>
+    
 <!--======================================
 |                   Key Stats            |
 ======================================= -->
 <main>
     <section id="akpg-header">
         <table>
-            <tr>
-                <!-- Existing player images -->
-                <td>
-                    <img src="ariel-face.png" alt="Icon" class="small-image">
-                </td>
-                <td>
-                    <img src="dean-velcro.png" alt="Icon" class="small-image">
-                </td>
-                <!-- New placeholder image for JeLL o Licious -->
-                <td>
-                    <img src="placeholder-jellolicious.png" alt="JeLL o Licious" class="small-image">
-                </td>
-            </tr>
+            <!-- Player images at the top -->
+            <thead>
+                <tr>
+                    <th></th> <!-- Empty cell for labels -->
+                    <th><img src="ariel-face.png" alt="Ariel Icon" class="small-image"></th>
+                    <th><img src="dean-velcro.png" alt="Lisan Icon" class="small-image"></th>
+                    <th><img src="brian-sock.png" alt="JeLL o Licious Icon" class="small-image"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Kills Per Game (KPG) -->
+                <tr>
+                    <td>Kills Avg</td>
+                    <td><div id="afz1219-akpg">Loading...</div></td>
+                    <td><div id="lisan-akpg">Loading...</div></td>
+                    <td><div id="jell-akpg">Loading...</div></td>
+                </tr>
 
-            <!-- Existing stats -->
-            <tr>
-                <td><div id="afz1219-akpg" class="stat-display-az">KPG:Loading...</div></td>
-                <td><div id="lisan-akpg" class="stat-display-lisan">KPG:Loading...</div></td>
-                <!-- New stats placeholder for JeLL o Licious -->
-                <td><div id="jell-akpg" class="stat-display-jell">KPG:Loading...</div></td>
-            </tr>
+                <!-- Damage Per Game (DPG) -->
+                <tr>
+                    <td>Damage Avg</td>
+                    <td><div id="afz1219-adpg">Loading...</div></td>
+                    <td><div id="lisan-adpg">Loading...</div></td>
+                    <td><div id="jell-adpg">Loading...</div></td>
+                </tr>
 
-            <tr>
-                <td><div id="afz1219-adpg" class="stat-display-az">DPG: Loading...</div></td>
-                <td><div id="lisan-adpg" class="stat-display-lisan">DKPG: Loading...</div></td>
-                <td><div id="jell-adpg" class="stat-display-jell">DPG: Loading...</div></td>
-            </tr>
-
-            <tr>
-                <td><div id="afz1219-max-damage" class="stat-display-az">Mdmg:</div></td>
-                <td><div id="lisan-max-damage" class="stat-display-lisan">Mdmg:</div></td>
-                <td><div id="jell-max-damage" class="stat-display-jell">Mdmg:</div></td>
-            </tr>
+                <!-- Max Damage -->
+                <tr>
+                    <td>Damage Max</td>
+                    <td><div id="afz1219-max-damage">Loading...</div></td>
+                    <td><div id="lisan-max-damage">Loading...</div></td>
+                    <td><div id="jell-max-damage">Loading...</div></td>
+                </tr>
+            </tbody>
         </table>
     </section>
 </main>
 
-    
-<!--======================================
-|              Footer &  Ticker            |
-======================================= -->
-
-    <!-- Footer at the bottom of the page -->
-    <footer>
-        <div class="ticker">
-            <div class="ticker-content">
-                <div class="ticker-item">My Brother in Christ</div>
-                <div class="ticker-item">I'm Bustin' It</div>
-                <div class="ticker-item">Alien Play</div>
-                <div class="ticker-item">I'm Cracked RN</div>
-        
-            </div>
+<!-- Footer & Ticker -->
+<footer>
+    <div class="ticker">
+        <div class="ticker-content">
+            <div class="ticker-item">Trust</div>
+            <div class="ticker-item">Trust</div>
+            <div class="ticker-item">Trust</div>
         </div>
-        <p>&copy; 2024 Bustin' Designs</p>
-    </footer>
+    </div>
+    <p>&copy; 2024 Bustin' Designs</p>
+</footer>
 
-    <!-- Links the external JavaScript file. This script runs once the HTML loads -->
-    <script type="module" src="script.js"></script>
+<!-- JavaScript link -->
+<script type="module" src="performance.js"></script>
 </body>
 </html>

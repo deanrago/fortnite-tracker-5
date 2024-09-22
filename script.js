@@ -27,7 +27,7 @@ const statsForm = document.getElementById('statsForm');
 const statsContainer = document.getElementById('statsContainer');
 const afz1219Akpg = document.getElementById('afz1219-akpg');
 const lisanAkpg = document.getElementById('lisan-akpg');
-const jellAkpg = document.getElementById('jell-akpg');  // Added for JeLL o Licious
+const jellAkpg = document.getElementById('jell-akpg');  // For JeLL o Licious
 
 // ===============================================
 //                  Form Submission
@@ -66,9 +66,6 @@ statsForm.addEventListener('submit', async (e) => {
 // ===============================================
 //                 Load Stats from Firebase
 //================================================
-// ===============================================
-//                 Load Stats from Firebase
-//================================================
 async function loadAllGameStats() {
     const statsQuery = query(collection(db, "gameStats"), orderBy("timestamp", "desc"));
     const querySnapshot = await getDocs(statsQuery);
@@ -94,12 +91,12 @@ async function loadAllGameStats() {
             };
         }
 
-        // Now assign the values including the landing zone
+        // Assign the values including the landing zone
         gameStats[gameId][data.gamertag].kills = data.kills;
         gameStats[gameId][data.gamertag].assists = data.assists;
         gameStats[gameId][data.gamertag].damage = data.damage;
         gameStats[gameId][data.gamertag].placement = data.placement;
-        gameStats[gameId][data.gamertag].landingZone = data.landingZone; // Ensure landing zone is included
+        gameStats[gameId][data.gamertag].landingZone = data.landingZone;
         gameStats[gameId].totalKills = (gameStats[gameId].totalKills || 0) + data.kills;
 
         if (!gameStats[gameId].timestamp || gameStats[gameId].timestamp < data.timestamp) {
@@ -131,11 +128,9 @@ async function loadAllGameStats() {
     }
 }
 
-
 // ===============================================
-//                 Performance
+//                 Performance Calculation
 //================================================
-
 async function calculateAkpg() {
     const statsQuery = query(collection(db, "gameStats"));
     const querySnapshot = await getDocs(statsQuery);
@@ -143,35 +138,41 @@ async function calculateAkpg() {
     let afz1219TotalKills = 0, afz1219Games = 0, afz1219TotalDamage = 0;
     let lisanTotalKills = 0, lisanGames = 0, lisanTotalDamage = 0;
     let jellTotalKills = 0, jellGames = 0, jellTotalDamage = 0;
-    let gameIds = new Set();
 
+    // Loop through each document returned by Firebase
     querySnapshot.forEach((doc) => {
         const data = doc.data();
-        gameIds.add(data.gameId);
 
+        // Count for AFZ1219
         if (data.gamertag === "AFZ1219") {
             afz1219TotalKills += data.kills;
             afz1219TotalDamage += data.damage;
             afz1219Games++;
-        } else if (data.gamertag === "Lisan-Al-Gaib") {
+        } 
+        // Count for Lisan-Al-Gaib
+        else if (data.gamertag === "Lisan-Al-Gaib") {
             lisanTotalKills += data.kills;
             lisanTotalDamage += data.damage;
             lisanGames++;
-        } else if (data.gamertag === "JeLL-o-Licious") {
+        } 
+        // Count for JeLL o Licious
+        else if (data.gamertag === "JeLL-o-Licious") {
             jellTotalKills += data.kills;
             jellTotalDamage += data.damage;
             jellGames++;
         }
     });
 
-    const afz1219AkpgValue = afz1219Games > 0 ? (afz1219TotalKills / gameIds.size).toFixed(2) : 0;
-    const lisanAkpgValue = lisanGames > 0 ? (lisanTotalKills / gameIds.size).toFixed(2) : 0;
-    const jellAkpgValue = jellGames > 0 ? (jellTotalKills / gameIds.size).toFixed(2) : 0;
+    // Calculate KPG and DPG for each player
+    const afz1219AkpgValue = afz1219Games > 0 ? (afz1219TotalKills / afz1219Games).toFixed(2) : 0;
+    const lisanAkpgValue = lisanGames > 0 ? (lisanTotalKills / lisanGames).toFixed(2) : 0;
+    const jellAkpgValue = jellGames > 0 ? (jellTotalKills / jellGames).toFixed(2) : 0;
 
-    const afz1219AdpgValue = afz1219Games > 0 ? (afz1219TotalDamage / gameIds.size).toFixed(2) : 0;
-    const lisanAdpgValue = lisanGames > 0 ? (lisanTotalDamage / gameIds.size).toFixed(2) : 0;
-    const jellAdpgValue = jellGames > 0 ? (jellTotalDamage / gameIds.size).toFixed(2) : 0;
+    const afz1219AdpgValue = afz1219Games > 0 ? (afz1219TotalDamage / afz1219Games).toFixed(2) : 0;
+    const lisanAdpgValue = lisanGames > 0 ? (lisanTotalDamage / lisanGames).toFixed(2) : 0;
+    const jellAdpgValue = jellGames > 0 ? (jellTotalDamage / jellGames).toFixed(2) : 0;
 
+    // Update the DOM with calculated stats
     afz1219Akpg.textContent = `Kpg: ${afz1219AkpgValue}`;
     lisanAkpg.textContent = `Kpg: ${lisanAkpgValue}`;
     jellAkpg.textContent = `Kpg: ${jellAkpgValue}`;

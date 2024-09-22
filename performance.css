@@ -1,0 +1,44 @@
+/* ========================================
+   |               Key Stats             |
+   ======================================== */
+   #akpg-header h2 {
+    margin-top: 0;
+}
+
+#akpg-header table {
+    margin: 0 auto;
+    border: none;
+}
+
+#akpg-header td {
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    font-size: 1rem;
+}
+
+.small-image {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+.stat-display-az {
+    color: blue !important;
+    font-size: 1.2rem;
+    text-align: start;
+}
+
+.stat-display-jell {
+    color: rgb(43, 231, 143) !important;
+    font-size: 1.2rem;
+    text-align: start;
+}
+
+.stat-display-lisan {
+    color: rgb(230, 0, 255) !important;
+    font-size: 1.2rem;
+    text-align: start;
+    font-family: "Georgia", serif !important;
+}

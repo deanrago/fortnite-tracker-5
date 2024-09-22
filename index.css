@@ -1,0 +1,67 @@
+/* ========================================
+   |               Form             |
+   ======================================== */
+
+/* General form styling */
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .2em; /* Increase gap between elements for clarity */
+    margin: 1em auto;
+    max-width: 600px; /* Set a maximum width for larger screens */
+}
+
+/* Form group styling */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em; /* Add more gap between form fields */
+    margin-bottom: 20px; /* Increase margin between groups */
+}
+
+label {
+    margin-bottom: 5px; /* Slightly increase the space below labels */
+    font-size: 1rem;
+    color: #333;
+}
+
+input, select, button {
+    padding: 10px; /* Increase padding for better usability */
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Round the edges slightly */
+    outline: none;
+    width: 100%; /* Ensure inputs and selects take full width */
+}
+
+button {
+    background-color: #4273e6;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    padding: 10px; /* Increase padding for a larger click area */
+    border: none;
+    width: 60%; /* Make the button take full width */
+    height: 3rem; /* Increase button height for touch devices */
+    font-size: 1.2rem; /* Increase font size for readability */
+    margin: 0 auto;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #3117d7;
+}
+
+/* ========================================
+   |         Mobile Responsiveness        |
+   ======================================== */
+
+@media (max-width: 600px) {
+    form {
+        width: 100%; /* Ensure the form takes full width on mobile */
+    }
+
+    button {
+        height: 3rem; /* Larger button size for touch devices */
+    }
+}

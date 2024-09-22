@@ -147,6 +147,12 @@ h2 {
     font-size: 1.2rem;
     text-align:start;
 }
+
+.stat-display-jell{
+    color:rgb(43, 231, 143) !important;
+    font-size: 1.2rem;
+    text-align:start;
+}
 .stat-display-lisan{
     color:rgb(230, 0, 255) !important;
     font-size: 1.2rem;

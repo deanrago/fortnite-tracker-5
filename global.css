@@ -1,0 +1,145 @@
+/* ========================================
+   |               General             |
+   ======================================== */
+   * {
+    margin: 0;
+    
+    box-sizing: border-box;
+   
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e7dede;
+    color: #333;
+    line-height: 1.5;
+   
+}
+
+html {
+    width: 100%;
+    overflow-x: hidden; /* Ensures no overflow */
+}
+
+/* ========================================
+   |               Header             |
+   ======================================== */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #4caf50;
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 3px solid #388e3c;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-size: 2rem;
+    max-width: 100%;
+    margin: 0;
+    color: #ffffff;
+    margin: 0 auto;
+}
+
+main{
+    padding-right: 1%;
+    padding-left: 1%;
+}
+/* ========================================
+   |               Nav             |
+   ======================================== */
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+/* Style the active page link with a border */
+nav a.active {
+    text-decoration: none; /* Remove underline if it was added earlier */
+    font-weight: bold;
+    color: #ffffff; /* Change color to make it stand out */
+    border: 2px solid #ace5ae; /* Add a border */
+    padding: 5px; /* Add some padding inside the border */
+    border-radius: 5px; /* Optional: Round the corners of the border */
+}
+
+
+/* ========================================
+   |              Footer &  Ticker             |
+   ======================================== */
+
+   footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #126115;
+    color: white;
+    text-align: center;
+    padding: 0px;
+}
+
+/* Ticker Section */
+.ticker {
+    background-color: inherit;
+    overflow: hidden; /* Hide overflow */
+    position: relative; /* Position relative for absolute positioning of content */
+    height: 1.5rem; /* Adjust height as needed */
+    display: flex;
+    align-items: center; /* Center items vertically */
+}
+
+.ticker-content {
+    display: flex;
+    /* Ensure the width can accommodate both the original and cloned content */
+    animation: scrollTicker 30s linear infinite; /* Adjust speed as needed */
+}
+
+/* Ticker Items */
+.ticker-item {
+    padding: 0 2rem; /* Spacing between messages */
+    white-space: nowrap; /* Prevent wrapping */
+    color: #fff; /* White text color */
+    font-weight: bold;
+}
+
+@keyframes scrollTicker {
+    0% {
+        transform: translateX(0); /* Start at the original position */
+    }
+    100% {
+        transform: translateX(-100%); /* Move to the left covering both original and cloned content */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
