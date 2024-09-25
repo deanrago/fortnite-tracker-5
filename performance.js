@@ -47,23 +47,28 @@ async function loadPerformanceData() {
         const kpgStats = await calculateKPG(playersData);
         const dpgStats = await calculateDPG(playersData);
         const maxDamageStats = await calculateMaxDamage(playersData);
+        const maxKillsStats = await calculateMaxKills(playersData);
 
         console.log("KPG Stats:", kpgStats);
         console.log("DPG Stats:", dpgStats);
         console.log("Max Damage Stats:", maxDamageStats);
+        console.log("Max Kills Stats:", maxKillsStats);
 
         // Render Stats (only for valid data)
         document.getElementById('afz1219-akpg').textContent = `${kpgStats['AFZ1219'] || 'N/A'}`;
         document.getElementById('afz1219-adpg').textContent = `${dpgStats['AFZ1219'] || 'N/A'}`;
         document.getElementById('afz1219-max-damage').textContent = `${maxDamageStats['AFZ1219'] || 'N/A'}`;
+        document.getElementById('afz1219-max-kills').textContent = `${maxKillsStats['AFZ1219'] || 'N/A'}`; 
 
         document.getElementById('lisan-akpg').textContent = `${kpgStats['Lisan-Al-Gaib'] || 'N/A'}`;
         document.getElementById('lisan-adpg').textContent = `${dpgStats['Lisan-Al-Gaib'] || 'N/A'}`;
         document.getElementById('lisan-max-damage').textContent = `${maxDamageStats['Lisan-Al-Gaib'] || 'N/A'}`;
+        document.getElementById('lisan-max-kills').textContent = `${maxKillsStats['Lisan-Al-Gaib'] || 'N/A'}`;
 
         document.getElementById('jell-akpg').textContent = `${kpgStats['JeLL-o-Licious'] || 'N/A'}`;
         document.getElementById('jell-adpg').textContent = `${dpgStats['JeLL-o-Licious'] || 'N/A'}`;
         document.getElementById('jell-max-damage').textContent = `${maxDamageStats['JeLL-o-Licious'] || 'N/A'}`;
+        document.getElementById('jell-max-kills').textContent = `${maxKillsStats['JeLL-o-Licious'] || 'N/A'}`;
     } catch (error) {
         console.error("Error fetching data:", error);
     }
@@ -99,6 +104,26 @@ async function calculateKPG(playersData) {
     return kpgStats;
 }
 
+// ===============================================
+//                 Max Kills Calculation (New)
+//================================================
+async function calculateMaxKills(playersData) {
+    let maxKillsStats = {};
+    
+    playersData.forEach((playerData) => {
+        const { kills, gamertag } = playerData;
+
+        if (typeof kills === 'number') {
+            if (!maxKillsStats[gamertag]) {
+                maxKillsStats[gamertag] = kills; // Initialize with the first kill value
+            } else {
+                maxKillsStats[gamertag] = Math.max(maxKillsStats[gamertag], kills); // Update if current kill is higher
+            }
+        }
+    });
+
+    return maxKillsStats;
+}
 
 // ===============================================
 //                 Damage Per Game (DPG) Calculation

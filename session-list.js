@@ -24,17 +24,22 @@ async function loadAllGameStats() {
     const statsQuery = query(collection(db, "gameStats"), orderBy("timestamp", "desc"));
     const querySnapshot = await getDocs(statsQuery);
 
-    // Group stats by gameId
-    let groupedGameStats = {};
+    // Group stats by sessionId -> gameId
+    let groupedSessionStats = {};
     querySnapshot.forEach((doc) => {
         const data = doc.data();
+        const sessionId = data.sessionId || "N/A"; // Default to "N/A" if no session ID
         const gameId = data.gameId;
 
-        if (!groupedGameStats[gameId]) {
-            groupedGameStats[gameId] = [];
+        if (!groupedSessionStats[sessionId]) {
+            groupedSessionStats[sessionId] = {};
         }
 
-        groupedGameStats[gameId].push({
+        if (!groupedSessionStats[sessionId][gameId]) {
+            groupedSessionStats[sessionId][gameId] = [];
+        }
+
+        groupedSessionStats[sessionId][gameId].push({
             gamertag: data.gamertag,
             kills: data.kills,
             assists: data.assists,
@@ -48,12 +53,12 @@ async function loadAllGameStats() {
         <table>
             <thead>
                 <tr>
-                    <th>Game ID</th>
+                    <th>ID</th>
                     <th>Gamertag</th>
-                    <th>Kills</th>
-                    <th>Assists</th>
-                    <th>Damage</th>
-                    <th>Placement</th>
+                    <th>Avg Kills</th>
+                    <th>Avg Assists</th>
+                    <th>Avg Damage</th>
+                    <th>Avg Placement</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -63,55 +68,108 @@ async function loadAllGameStats() {
     let tableBody = statsContainer.querySelector('tbody');
     let alternateClass = "game-group-1"; // Initialize for alternating rows
 
-    // Now process each gameId and add rows
-    for (let gameId in groupedGameStats) {
-        const players = groupedGameStats[gameId];
+    // Now process each sessionId and gameId
+    for (let sessionId in groupedSessionStats) {
+        const sessionGames = groupedSessionStats[sessionId];
 
-        // Toggle the class for each gameId group for alternating styles
-        alternateClass = (alternateClass === "game-group-1") ? "game-group-2" : "game-group-1";
+        // Calculate session-level average stats
+        let totalKills = 0;
+        let totalAssists = 0;
+        let totalDamage = 0;
+        let totalPlacement = 0;
+        let gameCount = 0;
+        let playerCount = 0;
+        let uniqueGamertags = new Set();
 
-        // Check if all placements are the same
-        const allPlacementsSame = players.every(player => player.placement === players[0].placement);
-
-        // Add the first row with `gameId` and the first player's stats
-        let row = `
-            <tr class="${alternateClass}">
-                <td rowspan="${players.length}">${gameId}</td>
-                <td>${players[0].gamertag}</td>
-                <td>${players[0].kills}</td>
-                <td>${players[0].assists}</td>
-                <td>${players[0].damage}</td>
-        `;
-
-        if (allPlacementsSame) {
-            // If all placements are the same, use rowspan for placement
-            row += `<td rowspan="${players.length}">${players[0].placement}</td></tr>`;
-        } else {
-            // If placements differ, show the individual placement for the first player
-            row += `<td>${players[0].placement}</td></tr>`;
+        for (let gameId in sessionGames) {
+            sessionGames[gameId].forEach((player) => {
+                totalKills += player.kills;
+                totalAssists += player.assists;
+                totalDamage += player.damage;
+                totalPlacement += player.placement;
+                playerCount++;
+                uniqueGamertags.add(player.gamertag);
+            });
+            gameCount++;
         }
 
-        tableBody.innerHTML += row;
+        const avgKills = (totalKills / gameCount).toFixed(1); // 1 decimal place
+        const avgAssists = (totalAssists / gameCount).toFixed(1); // 1 decimal place
+        const avgDamage = Math.round(totalDamage / gameCount); // No decimal places
+        const avgPlacement = Math.round(totalPlacement / playerCount); // No decimal places
+        const allGamertags = Array.from(uniqueGamertags).join(', ');
 
-        // Add remaining rows for other players (without the `gameId` and placement if all are the same)
-        for (let i = 1; i < players.length; i++) {
-            let playerRow = `
-                <tr class="${alternateClass}">
-                    <td>${players[i].gamertag}</td>
-                    <td>${players[i].kills}</td>
-                    <td>${players[i].assists}</td>
-                    <td>${players[i].damage}</td>
+        // Add session-level row (session ID in the "ID" column, rest are stats)
+        let sessionRow = `
+            <tr class="session-summary ${alternateClass}" data-session-id="${sessionId}" style="font-weight:bold; cursor:pointer;">
+                <td colspan="1">${sessionId} <span class="toggle-icon">+</span></td>
+                <td>${allGamertags}</td>
+                <td>${avgKills}</td>
+                <td>${avgAssists}</td>
+                <td>${avgDamage}</td>
+                <td>${avgPlacement}</td>
+            </tr>
+        `;
+        tableBody.innerHTML += sessionRow;
+
+        // Now process each gameId within this session
+        for (let gameId in sessionGames) {
+            const players = sessionGames[gameId];
+
+            // Toggle the class for each gameId group for alternating styles
+            alternateClass = (alternateClass === "game-group-1") ? "game-group-2" : "game-group-1";
+
+            // Add the first row with `gameId` and the first player's stats
+            let row = `
+                <tr class="session-${sessionId} game-group ${alternateClass} hidden">
+                    <td rowspan="${players.length}">${gameId}</td>
+                    <td>${players[0].gamertag}</td>
+                    <td>${players[0].kills}</td>
+                    <td>${players[0].assists}</td>
+                    <td>${players[0].damage}</td>
+                    <td>${players[0].placement}</td>
+                </tr>
             `;
+            tableBody.innerHTML += row;
 
-            if (!allPlacementsSame) {
-                // If placements differ, show the individual placement for each player
-                playerRow += `<td>${players[i].placement}</td>`;
+            // Add remaining rows for other players
+            for (let i = 1; i < players.length; i++) {
+                let playerRow = `
+                    <tr class="session-${sessionId} game-group ${alternateClass} hidden">
+                        <td>${players[i].gamertag}</td>
+                        <td>${players[i].kills}</td>
+                        <td>${players[i].assists}</td>
+                        <td>${players[i].damage}</td>
+                        <td>${players[i].placement}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += playerRow;
             }
-
-            playerRow += `</tr>`;
-            tableBody.innerHTML += playerRow;
         }
     }
+
+    // Add event listener for collapsing/expanding sessions
+    document.querySelectorAll('.session-summary').forEach((sessionRow) => {
+        sessionRow.addEventListener('click', () => {
+            const sessionId = sessionRow.getAttribute('data-session-id');
+            document.querySelectorAll(`.session-${sessionId}`).forEach((gameRow) => {
+                gameRow.classList.toggle('hidden');
+            });
+            const toggleIcon = sessionRow.querySelector('.toggle-icon');
+            toggleIcon.textContent = toggleIcon.textContent === '+' ? '-' : '+';
+        });
+    });
 }
+
+// Add some CSS to hide and show game rows
+const css = `
+.hidden {
+    display: none;
+}
+`;
+
+const style = document.createElement('style');
+style.textContent = css;
+document.head.appendChild(style);
 
 document.addEventListener('DOMContentLoaded', loadAllGameStats);

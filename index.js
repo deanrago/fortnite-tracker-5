@@ -26,6 +26,7 @@ const statsForm = document.getElementById('statsForm');
 statsForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const sessionId = document.getElementById('sessionId').value; 
     const gamertag = document.getElementById('gamertag').value;
     const gameId = document.getElementById('gameId').value;
     const landingZone = document.getElementById('landingZone').value;
@@ -36,6 +37,7 @@ statsForm.addEventListener('submit', async (e) => {
 
     try {
         await addDoc(collection(db, "gameStats"), {
+            sessionId,
             gamertag,
             gameId,
             landingZone,
@@ -46,7 +48,15 @@ statsForm.addEventListener('submit', async (e) => {
             timestamp: new Date()
         });
 
-        alert("Game stats submitted successfully!");
+        alert("Nice Cock!");
+
+        document.getElementById('gameId').value = '';
+        document.getElementById('landingZone').value = '';
+        document.getElementById('kills').value = '';
+        document.getElementById('assists').value = '';
+        document.getElementById('damage').value = '';
+        document.getElementById('placement').value = '';
+        
     } catch (error) {
         console.error("Error adding document: ", error);
     }

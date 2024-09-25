@@ -16,7 +16,7 @@
 }
 
 th, td {
-    padding: 6px;
+    padding: 8px;
     border: 1px solid #b4afaf;
     text-align: center;
     font-size: 1rem;
@@ -33,6 +33,16 @@ caption {
     font-size: 1.3rem;
     margin-bottom: 3%;
     text-align: start;
+}
+
+/* Scroll the entire table if necessary (not individual rows) */
+table {
+    overflow-y: auto;
+}
+
+/* CSS to hide game rows */
+.hidden {
+    display: none;
 }
 
 /* Responsive design for smaller screens */
