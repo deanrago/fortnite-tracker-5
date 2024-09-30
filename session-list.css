@@ -3,14 +3,15 @@
    ======================================== */
    table {
     width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* Fix the layout for more consistent column width */
+    border-collapse: separate; /* Allow space between cells */
+    border-spacing: 0 10px; /* Add space between table rows */
+    table-layout: fixed;
     overflow-y: auto;
 }
 
 /* Alternating background colors for gameId groups */
 .game-group-1 {
-    background-color: #b6b3b3; /* Light gray for the first group */
+    background-color: #f2f2f2; /* Light gray for the first group */
 }
 
 .game-group-2 {
@@ -18,32 +19,38 @@
 }
 
 th, td {
-    padding: 8px;
-    border: 1px solid #cac9c9;
+    padding: 12px 8px; /* Increase padding for more breathing room */
+    border: 1px solid #b4afaf;
     text-align: center;
-    font-size: 3vw; /* Dynamically scale font size based on viewport width */
+    font-size: 1rem;
     color: #333;
-    word-wrap: break-word; /* Ensure wrapping of text within cells */
-    white-space: normal; /* Allow content to wrap and avoid overflow */
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 /* Header styling */
 th {
     background-color: #4caf50;
     color: #fff;
-    font-size: 3.5vw; /* Slightly larger font for headers */
+    font-size: 1.1rem; /* Slightly larger header text */
+    padding: 16px 8px; /* Increase padding for headers */
 }
 
-/* Caption styling */
-caption {
-    font-size: 1.3rem;
-    margin-bottom: 3%;
-    text-align: start;
+/* Add space between sessions */
+tbody tr {
+    margin-bottom: 20px; /* Space between each session */
 }
 
-/* CSS to hide game rows */
-.hidden {
-    display: none;
+/* Add space between individual games in a session */
+.game-row {
+    margin-bottom: 10px; /* Space between games */
+    border-radius: 5px; /* Optional: rounded corners for each game row */
+    background-color: #f9f9f9; /* Optional: light background for game rows */
+}
+
+/* Optional: Add a subtle border between sessions */
+tbody tr:not(:last-child) {
+    border-bottom: 2px solid #ccc; /* A soft dividing line between sessions */
 }
 
 /* Responsive design for smaller screens */
@@ -54,39 +61,15 @@ caption {
     }
 
     th, td {
-        font-size: 3.5vw; /* Font size scales based on screen width */
-        padding: 4px;
+        font-size: 0.85rem;
+        padding: 6px;
     }
 
-    th, td {
-        max-width: 100px; /* Limit the width of each column for smaller screens */
+    tbody tr {
+        margin-bottom: 16px; /* Adjust margin for smaller screens */
     }
 
-    td {
-        white-space: normal; /* Allow the text to wrap naturally */
-        word-wrap: break-word; /* Force long words to break if necessary */
-    }
-
-    button {
-        width: 100px; /* Control button size on smaller screens */
-    }
-
-    h2 {
-        font-size: 1.2rem; /* Reduce header size */
-    }
-}
-
-/* Additional mobile styling */
-@media (max-width: 600px) {
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap; /* Allow horizontal scroll if absolutely necessary */
-    }
-
-    th, td {
-        padding: 8px 12px;
-        white-space: normal; /* Allow text to wrap on mobile */
-        word-wrap: break-word;
+    .game-row {
+        margin-bottom: 8px;
     }
 }
