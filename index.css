@@ -3,30 +3,34 @@
    ======================================== */
 
 /* General form styling */
+
+
+
 form {
     display: grid;
     grid-template-columns: 1fr;
     gap: .2em; /* Increase gap between elements for clarity */
     margin: 1em auto;
-    max-width: 600px; /* Set a maximum width for larger screens */
+    
+    max-width:600px; /* Set a maximum width for larger screens */
 }
 
 /* Form group styling */
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5em; /* Add more gap between form fields */
-    margin-bottom: 20px; /* Increase margin between groups */
+    gap: 0em; /* Add more gap between form fields */
+    margin-bottom: 0px; /* Increase margin between groups */
 }
 
 label {
-    margin-bottom: 5px; /* Slightly increase the space below labels */
+    margin-bottom: 1%; /* Slightly increase the space below labels */
     font-size: 1rem;
     color: #333;
 }
 
 input, select, button {
-    padding: 10px; /* Increase padding for better usability */
+    padding: 1%; /* Increase padding for better usability */
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px; /* Round the edges slightly */

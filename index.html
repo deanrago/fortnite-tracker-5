@@ -41,56 +41,72 @@
             <form id="statsForm">
 <!----    Game-Specific    ---->
                 <div class="form-group">
-                    <label for="sessionId">Session ID:</label>
-                    <input type="text" id="sessionId" required>
-                    
-                    <label for="gameId">Game ID:</label>
-                    <input type="text" id="gameId" required>
-                    
-                    <label for="placement">Placement:</label>
-                    <input type="number" id="placement" required>
+                    <table>
+                        <tr>
+                            <td><label for="sessionId">Session:</label></td>
+                            <td><input type="text" id="sessionId" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="gameId">Game:</label></td>
+                            <td><input type="text" id="gameId" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="placement">Place:</label></td>
+                            <td><input type="number" id="placement" required></td>
+                        </tr>
+                    </table>
                 </div>
 
 <!----    Player-Specific    ---->
                 <div class="form-group">
-                    <!-- Dropdown to select the player's gamertag. JavaScript uses this data -->
-                    <label for="gamertag">Gamertag:</label>
-                    <select id="gamertag" required>
-                        <option value="AFZ1219">Ariel (AFZ1219)</option>
-                        <option value="Lisan-Al-Gaib">Lisan-Al-Gaib (Lisan-Al-Gaib)</option>
-                        <option value="JeLL-o-Licious">JeLL o Licious</option> <!-- JeLL o Licious Added -->
-                    </select>
-
-                    <!-- Dropdown to select the landing zone. JavaScript records this stat -->
-                    <label for="landingZone">Landing Zone:</label>
-                    <select id="landingZone" required>
-                        <option value="Lone Lodge">Lone Lodge</option>
-                        <option value="Snobby Shoals">Snobby Shoals</option>
-                        <option value="Pleasant Park">Pleasant Park</option>
-                        <option value="Tilted Towers">Tilted Towers</option>
-                        <option value="Lil’ Loot Lake">Lil’ Loot Lake</option>
-                        <option value="Sandy Sheets">Sandy Sheets</option>
-                        <option value="Retail Row">Retail Row</option>
-                        <option value="Lazy Laps">Lazy Laps</option>
-                        <option value="Dusty Dicks">Dusty Dicks</option>
-                    </select>
+                    <table>
+                        <tr>
+                            <td><label for="gamertag">Gamertag:</label></td>
+                            <td>
+                                <select id="gamertag" required>
+                                    <option value="AFZ1219">Ariel (AFZ1219)</option>
+                                    <option value="Lisan-Al-Gaib">Lisan-Al-Gaib (Lisan-Al-Gaib)</option>
+                                    <option value="JeLL-o-Licious">JeLL o Licious</option> <!-- JeLL o Licious Added -->
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="landingZone">Landing Zone:</label></td>
+                            <td>
+                                <select id="landingZone" required>
+                                    <option value="Lone Lodge">Lone Lodge</option>
+                                    <option value="Snobby Shoals">Snobby Shoals</option>
+                                    <option value="Pleasant Park">Pleasant Park</option>
+                                    <option value="Tilted Towers">Tilted Towers</option>
+                                    <option value="Lil’ Loot Lake">Lil’ Loot Lake</option>
+                                    <option value="Sandy Sheets">Sandy Sheets</option>
+                                    <option value="Retail Row">Retail Row</option>
+                                    <option value="Lazy Laps">Lazy Laps</option>
+                                    <option value="Dusty Dicks">Dusty Dicks</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
+
 
                 <div class="form-group">
-                    <!-- Input for kills (required field) -->
-                    <label for="kills">Kills:</label>
-                    <input type="number" id="kills" required>
-
-                    <!-- Input for assists (required field) -->
-                    <label for="assists">Assists:</label>
-                    <input type="number" id="assists" required>
+                    <table>
+                        <tr>
+                            <td><label for="kills">Kills:</label></td>
+                            <td><input type="number" id="kills" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="assists">Assists:</label></td>
+                            <td><input type="number" id="assists" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="damage">Damage:</label></td>
+                            <td><input type="number" id="damage" required></td>
+                        </tr>
+                    </table>
                 </div>
-
-                <div class="form-group">
-                    <!-- Input for damage dealt to players (required field) -->
-                    <label for="damage">Damage to Players:</label>
-                    <input type="number" id="damage" required>
-                </div>
+                
 
                 <!-- Submit button. JavaScript will listen for this button to trigger actions -->
                 <button type="submit">Submit</button>
