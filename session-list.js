@@ -58,7 +58,7 @@ async function loadAllGameStats() {
                     <th>Avg Kills</th>
                     <th>Avg Assists</th>
                     <th>Avg Damage</th>
-                    <th>Avg Placement</th>
+                    <th>Avg Place</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -97,12 +97,12 @@ async function loadAllGameStats() {
         const avgAssists = (totalAssists / gameCount).toFixed(1); // 1 decimal place
         const avgDamage = Math.round(totalDamage / gameCount); // No decimal places
         const avgPlacement = Math.round(totalPlacement / playerCount); // No decimal places
-        const allGamertags = Array.from(uniqueGamertags).join(', ');
+        const allGamertags = Array.from(uniqueGamertags).join('<br>');
 
         // Add session-level row (session ID in the "ID" column, rest are stats)
         let sessionRow = `
             <tr class="session-summary ${alternateClass}" data-session-id="${sessionId}" style="font-weight:bold; cursor:pointer;">
-                <td colspan="1">${sessionId} <span class="toggle-icon">+</span></td>
+                <td colspan="1">${sessionId} <span class="toggle-icon"></span></td>
                 <td>${allGamertags}</td>
                 <td>${avgKills}</td>
                 <td>${avgAssists}</td>
@@ -156,7 +156,7 @@ async function loadAllGameStats() {
                 gameRow.classList.toggle('hidden');
             });
             const toggleIcon = sessionRow.querySelector('.toggle-icon');
-            toggleIcon.textContent = toggleIcon.textContent === '+' ? '-' : '+';
+            toggleIcon.textContent = toggleIcon.textContent === '' ? '' : '';
         });
     });
 }

@@ -4,11 +4,13 @@
    table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed; /* Fix the layout for more consistent column width */
+    overflow-y: auto;
 }
 
 /* Alternating background colors for gameId groups */
 .game-group-1 {
-    background-color: #f2f2f2; /* Light gray for the first group */
+    background-color: #b6b3b3; /* Light gray for the first group */
 }
 
 .game-group-2 {
@@ -17,15 +19,19 @@
 
 th, td {
     padding: 8px;
-    border: 1px solid #b4afaf;
+    border: 1px solid #cac9c9;
     text-align: center;
-    font-size: 1rem;
+    font-size: 3vw; /* Dynamically scale font size based on viewport width */
     color: #333;
+    word-wrap: break-word; /* Ensure wrapping of text within cells */
+    white-space: normal; /* Allow content to wrap and avoid overflow */
 }
 
+/* Header styling */
 th {
     background-color: #4caf50;
     color: #fff;
+    font-size: 3.5vw; /* Slightly larger font for headers */
 }
 
 /* Caption styling */
@@ -33,11 +39,6 @@ caption {
     font-size: 1.3rem;
     margin-bottom: 3%;
     text-align: start;
-}
-
-/* Scroll the entire table if necessary (not individual rows) */
-table {
-    overflow-y: auto;
 }
 
 /* CSS to hide game rows */
@@ -48,34 +49,44 @@ table {
 /* Responsive design for smaller screens */
 @media (max-width: 600px) {
     table {
-        table-layout: fixed;
         width: 100%;
         overflow-x: auto;
     }
 
     th, td {
-        font-size: 0.85rem;
+        font-size: 3.5vw; /* Font size scales based on screen width */
         padding: 4px;
     }
 
+    th, td {
+        max-width: 100px; /* Limit the width of each column for smaller screens */
+    }
+
+    td {
+        white-space: normal; /* Allow the text to wrap naturally */
+        word-wrap: break-word; /* Force long words to break if necessary */
+    }
+
     button {
-        width: 100px;
+        width: 100px; /* Control button size on smaller screens */
     }
 
     h2 {
-        font-size: 1.2rem;
+        font-size: 1.2rem; /* Reduce header size */
     }
 }
 
-/* Additional styling for better mobile view */
+/* Additional mobile styling */
 @media (max-width: 600px) {
     table {
         display: block;
         overflow-x: auto;
-        white-space: nowrap;
+        white-space: nowrap; /* Allow horizontal scroll if absolutely necessary */
     }
 
     th, td {
         padding: 8px 12px;
+        white-space: normal; /* Allow text to wrap on mobile */
+        word-wrap: break-word;
     }
 }
