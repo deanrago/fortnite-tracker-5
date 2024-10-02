@@ -29,12 +29,16 @@ th, td {
 }
 
 /* Header styling */
+/* Make the table header sticky */
 th {
-    background-color: #4caf50;
-    color: #fff;
-    font-size: 1.1rem; /* Slightly larger header text */
-    padding: 16px 8px; /* Increase padding for headers */
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Ensure the header stays on top */
+    background-color: #4caf50; /* Maintain background color */
+    color: #fff; /* Maintain text color */
+    padding: 16px 8px; /* Keep the padding for readability */
 }
+
 
 /* Add space between sessions */
 tbody tr {

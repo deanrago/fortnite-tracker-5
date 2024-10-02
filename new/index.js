@@ -1,31 +1,23 @@
-// ===============================================
-//                  Firebase
-//================================================
+import { db, collection, getDocs, query, orderBy, addDoc } from '../global/firebase-config.js';
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+// Set the default date on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const today = new Date();
+    const formattedDate = today.getFullYear() + '-' + 
+        String(today.getMonth() + 1).padStart(2, '0') + '-' + 
+        String(today.getDate()).padStart(2, '0');
+    
+    document.getElementById("sessionId").value = formattedDate;
+});
 
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyAsCjjOr7KguFLTusyTKadPJ1c4WfOYZs4",
-    authDomain: "fortnite-stat-tracker2.firebaseapp.com",
-    projectId: "fortnite-stat-tracker2",
-    storageBucket: "fortnite-stat-tracker2.appspot.com",
-    messagingSenderId: "1027445489979",
-    appId: "1:1027445489979:web:81ffac5422bf59c546f71e",
-    measurementId: "G-6R3JGYZWFK"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-
+// Get the form element
 const statsForm = document.getElementById('statsForm');
 
+// Add event listener for form submission
 statsForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Get form values
     const sessionId = document.getElementById('sessionId').value; 
     const gamertag = document.getElementById('gamertag').value;
     const gameId = document.getElementById('gameId').value;
@@ -36,6 +28,7 @@ statsForm.addEventListener('submit', async (e) => {
     const placement = parseInt(document.getElementById('placement').value);
 
     try {
+        // Add the document to the 'gameStats' collection in Firestore
         await addDoc(collection(db, "gameStats"), {
             sessionId,
             gamertag,
@@ -48,8 +41,10 @@ statsForm.addEventListener('submit', async (e) => {
             timestamp: new Date()
         });
 
+        // Success message
         alert("Nice Cock!");
 
+        // Clear the form fields after submission
         document.getElementById('gameId').value = '';
         document.getElementById('landingZone').value = '';
         document.getElementById('kills').value = '';
@@ -60,4 +55,5 @@ statsForm.addEventListener('submit', async (e) => {
     } catch (error) {
         console.error("Error adding document: ", error);
     }
+
 });

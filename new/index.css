@@ -4,8 +4,6 @@
 
 /* General form styling */
 
-
-
 form {
     display: grid;
     grid-template-columns: 1fr;
@@ -30,7 +28,7 @@ label {
 }
 
 input, select, button {
-    padding: 1%; /* Increase padding for better usability */
+    padding: 2%; /* Increase padding for better usability */
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px; /* Round the edges slightly */

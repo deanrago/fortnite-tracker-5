@@ -1,72 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!--======================================
-|                   Head                 |
-======================================= -->
 <head>
-    <meta charset="UTF-8"> <!-- Defines the document type and version as HTML5 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling on mobile devices -->
-    <title>I'm Bustin' It</title> <!-- Sets the page title that appears in the browser tab -->
-    <link rel="stylesheet" href="global.css"> <!-- Links to the external CSS file, connecting this HTML to the styling in "style.css" -->
-    <link rel="stylesheet" href="index.css"> <!-- Links to the external CSS file, connecting this HTML to the styling in "style.css" -->
-
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Bustin' It</title> 
+    <link rel="stylesheet" href="../global/global.css">    
+    <link rel="stylesheet" href="index.css"> 
 </head>
-
-<!--======================================
-|                   Body                 |
-======================================= -->
 <body>
-<!----    Header    ---->
     <header>
         <h1>Fork Knife Stats</h1>
-<!----    NavBar    ---->
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">New</a></li>
-                <li><a href="performance.html">Performance</a></li>
-                <li><a href="session-list.html">List</a></li>
-            </ul>
-        </nav>
+<nav>
+    <ul>
+        <li><a href="../new/index.html"class="active">New</a></li> 
+        <li><a href="../performance/performance.html">Performance</a></li> 
+        <li><a href="../session-list/session-list.html">List</a></li> 
+    </ul>
+</nav>
     </header>
-   
-
-<!--======================================
-|                   Form                 |
-======================================= -->
     <main>
-    
         <section id="stat-entry">
-            
             <form id="statsForm">
-<!----    Game-Specific    ---->
                 <div class="form-group">
                     <table>
                         <tr>
                             <td><label for="sessionId">Session:</label></td>
-                            <td><input type="text" id="sessionId" required></td>
+                            <td><input type="date" id="sessionId" required ></td>
                         </tr>
                         <tr>
                             <td><label for="gameId">Game:</label></td>
-                            <td><input type="text" id="gameId" required></td>
+                            <td><input type="text" id="gameId" required inputmode="number" pattern="[0-9]*" ></td>
                         </tr>
+                        
                         <tr>
                             <td><label for="placement">Place:</label></td>
-                            <td><input type="number" id="placement" required></td>
+                            <td><input type="text" id="placement" required inputmode="number" pattern="[0-9]*"></td>
                         </tr>
-                    </table>
-                </div>
-
-<!----    Player-Specific    ---->
-                <div class="form-group">
-                    <table>
                         <tr>
                             <td><label for="gamertag">Gamertag:</label></td>
                             <td>
                                 <select id="gamertag" required>
                                     <option value="AFZ1219">Ariel (AFZ1219)</option>
                                     <option value="Lisan-Al-Gaib">Lisan-Al-Gaib (Lisan-Al-Gaib)</option>
-                                    <option value="JeLL-o-Licious">JeLL o Licious</option> <!-- JeLL o Licious Added -->
+                                    <option value="JeLL-o-Licious">JeLL o Licious</option> 
                                 </select>
                             </td>
                         </tr>
@@ -83,31 +59,29 @@
                                     <option value="Retail Row">Retail Row</option>
                                     <option value="Lazy Laps">Lazy Laps</option>
                                     <option value="Dusty Dicks">Dusty Dicks</option>
+                                    <option value="I Landed In the Water">I Landed in the Water</option>
                                 </select>
                             </td>
                         </tr>
-                    </table>
-                </div>
-
-
-                <div class="form-group">
-                    <table>
                         <tr>
                             <td><label for="kills">Kills:</label></td>
-                            <td><input type="number" id="kills" required></td>
+                            <td><input type="text" id="kills" required inputmode="number" pattern="[0-9]*"></td>
                         </tr>
                         <tr>
                             <td><label for="assists">Assists:</label></td>
-                            <td><input type="number" id="assists" required></td>
+                            <td><input type="text" id="assists" required inputmode="number" pattern="[0-9]*"></td>
                         </tr>
                         <tr>
                             <td><label for="damage">Damage:</label></td>
-                            <td><input type="number" id="damage" required></td>
+                            <td><input type="text" id="damage" required inputmode="number" pattern="[0-9]*"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="clip">Clip:</label></td>
+                            <td><input type="file" id="clip"></td>  
                         </tr>
                     </table>
-                </div>
-                
-
+                </div>                
+                <br>
                 <!-- Submit button. JavaScript will listen for this button to trigger actions -->
                 <button type="submit">Submit</button>
             </form>
