@@ -1,4 +1,4 @@
-import { db, collection, getDocs, query, orderBy, addDoc } from '/global/firebase-config.js';
+import { db, collection, getDocs, query, orderBy, addDoc } from '/fortinte-tracker-5/global/firebase-config.js';
 
 // ===============================================
 //                 Fetch and Display Data
