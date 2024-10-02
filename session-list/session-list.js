@@ -1,4 +1,4 @@
-import { db, collection, getDocs, query, orderBy, addDoc } from '/fortinte-tracker-5/global/firebase-config.js';
+import { db, collection, getDocs, query, orderBy, addDoc } from '/fortnite-tracker-5/global/firebase-config.js';
 
 async function loadAllGameStats() {
     const statsQuery = query(collection(db, "gameStats"), orderBy("timestamp", "desc"));
