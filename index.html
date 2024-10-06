@@ -4,19 +4,19 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I'm Bustin' It</title> 
-    <link rel="stylesheet" href="/fortnite-tracker-5/global/global.css">    
-    <link rel="stylesheet" href="/fortnite-tracker-5/new/index.css"> 
+    <link rel="stylesheet" href="../global/global.css">
+    <link rel="stylesheet" href="index.css"> 
 </head>
 <body>
     <header>
         <h1>Fork Knife Stats</h1>
-<nav>
-    <ul>
-        <li><a href="/fortnite-tracker-5/index.html"class="active">New</a></li> 
-        <li><a href="/fortnite-tracker-5/performance/performance.html">Performance</a></li> 
-        <li><a href="/fortnite-tracker-5/session-list/session-list.html">List</a></li> 
-    </ul>
-</nav>
+        <nav>
+            <ul>
+                <li><a href="../index.html" class="active">New</a></li>
+                <li><a href="../performance/performance.html">Performance</a></li>
+                <li><a href="../session-list/session-list.html">List</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
         <section id="stat-entry">
@@ -25,13 +25,12 @@
                     <table>
                         <tr>
                             <td><label for="sessionId">Session:</label></td>
-                            <td><input type="date" id="sessionId" required ></td>
+                            <td><input type="date" id="sessionId" required></td>
                         </tr>
                         <tr>
                             <td><label for="gameId">Game:</label></td>
-                            <td><input type="text" id="gameId" required inputmode="number" pattern="[0-9]*" ></td>
+                            <td><input type="text" id="gameId" required inputmode="number" pattern="[0-9]*"></td>
                         </tr>
-                        
                         <tr>
                             <td><label for="placement">Place:</label></td>
                             <td><input type="text" id="placement" required inputmode="number" pattern="[0-9]*"></td>
@@ -107,8 +106,8 @@
         <p>&copy; 2024 Bustin' Designs</p>
     </footer>
 
-    <!-- Links the external JavaScript file. This script runs once the HTML loads -->
-    <script type="module" src="/fortnite-tracker-5/new/index.js"></script>
+    <!-- Relative path to the JavaScript file -->
+    <script type="module" src="index.js"></script>
 
 </body>
 </html>
