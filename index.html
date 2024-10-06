@@ -4,25 +4,17 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I'm Bustin' It</title> 
-    <script>
-        const base = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
-            ? '' 
-            : '/fortnite-tracker-5';
-        document.write(`
-            <link rel="stylesheet" href="${base}/global/global.css">
-            <link rel="stylesheet" href="${base}/new/index.css">
-        `);
-    </script>
-    
+    <link rel="stylesheet" href="/fortnite-tracker-5/global/global.css">
+    <link rel="stylesheet" href="/fortnite-tracker-5/new/index.css">
 </head>
 <body>
     <header>
         <h1>Fork Knife Stats</h1>
         <nav>
             <ul>
-                <li><a href="${base}/index.html" class="active">New</a></li>
-                <li><a href="${base}/performance/performance.html">Performance</a></li>
-                <li><a href="${base}/session-list/session-list.html">List</a></li>
+                <li><a href="/fortnite-tracker-5/index.html" class="active">New</a></li>
+                <li><a href="/fortnite-tracker-5/performance/performance.html">Performance</a></li>
+                <li><a href="/fortnite-tracker-5/session-list/session-list.html">List</a></li>
             </ul>        
         </nav>
     </header>
@@ -48,7 +40,7 @@
                             <td>
                                 <select id="gamertag" required>
                                     <option value="AFZ1219">Ariel (AFZ1219)</option>
-                                    <option value="Lisan-Al-Gaib">Lisan-Al-Gaib (Lisan-Al-Gaib)</option>
+                                    <option value="Lisan-Al-Gaib">Lisan-Al-Gaib</option>
                                     <option value="JeLL-o-Licious">JeLL o Licious</option> 
                                 </select>
                             </td>
@@ -96,7 +88,7 @@
     </main>
 
 <!--======================================
-|              Footer &  Ticker            |
+|              Footer & Ticker            |
 ======================================= -->
 
     <!-- Footer at the bottom of the page -->
@@ -115,15 +107,7 @@
     </footer>
 
     <!-- JavaScript file -->
-    <script type="module">
-        const base = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
-            ? '' 
-            : '/fortnite-tracker-5';
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.src = `${base}/new/index.js`;
-        document.body.appendChild(script);
-    </script>
+    <script type="module" src="/fortnite-tracker-5/new/index.js"></script>
 
 </body>
 </html>
