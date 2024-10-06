@@ -4,18 +4,26 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I'm Bustin' It</title> 
-    <link rel="stylesheet" href="../global/global.css">
-    <link rel="stylesheet" href="index.css"> 
+    <script>
+        const base = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
+            ? '' 
+            : '/fortnite-tracker-5';
+        document.write(`
+            <link rel="stylesheet" href="${base}/global/global.css">
+            <link rel="stylesheet" href="${base}/new/index.css">
+        `);
+    </script>
+    
 </head>
 <body>
     <header>
         <h1>Fork Knife Stats</h1>
         <nav>
             <ul>
-                <li><a href="../index.html" class="active">New</a></li>
-                <li><a href="../performance/performance.html">Performance</a></li>
-                <li><a href="../session-list/session-list.html">List</a></li>
-            </ul>
+                <li><a href="${base}/index.html" class="active">New</a></li>
+                <li><a href="${base}/performance/performance.html">Performance</a></li>
+                <li><a href="${base}/session-list/session-list.html">List</a></li>
+            </ul>        
         </nav>
     </header>
     <main>
@@ -106,8 +114,16 @@
         <p>&copy; 2024 Bustin' Designs</p>
     </footer>
 
-    <!-- Relative path to the JavaScript file -->
-    <script type="module" src="index.js"></script>
+    <!-- JavaScript file -->
+    <script type="module">
+        const base = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
+            ? '' 
+            : '/fortnite-tracker-5';
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = `${base}/new/index.js`;
+        document.body.appendChild(script);
+    </script>
 
 </body>
 </html>
